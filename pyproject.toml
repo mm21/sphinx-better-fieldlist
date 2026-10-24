@@ -9,20 +9,21 @@ classifiers = [
   "Natural Language :: English",
   "Operating System :: OS Independent",
   "Programming Language :: Python :: 3",  # pyprojkit-managed
-  "Programming Language :: Python :: 3.12",  # pyprojkit-managed
   "Programming Language :: Python :: 3.13",  # pyprojkit-managed
   "Programming Language :: Python :: 3.14",  # pyprojkit-managed
   "Programming Language :: Python :: Implementation :: CPython",
   "Topic :: Software Development :: Libraries :: Python Modules",
   "Typing :: Typed"  # pyprojkit-managed
 ]
-dependencies = []
+dependencies = [
+  "sphinx>=7.4"
+]
 description = "Better your fieldlists for API documentation"
 license = "MIT"
 license-files = ["LICENSE"]
 name = "sphinx-better-fieldlist"
 readme = "README.md"
-requires-python = ">=3.12,<4.0"  # pyprojkit-managed
+requires-python = ">=3.13,<4.0"  # pyprojkit-managed
 version = "0.1.0"
 
 [project.urls]
@@ -30,7 +31,10 @@ homepage = "https://github.com/mm21/sphinx-better-fieldlist"
 
 [dependency-groups]
 dev = [
-  "pyprojkit[all]"
+  "myst-parser>=5.1.0",
+  "pyprojkit[all]",
+  "sphinx-autodoc2>=0.5.0",
+  "types-docutils>=0.23.0.20260923"
 ]
 
 [build-system]
@@ -46,7 +50,6 @@ remove-unused-variables = true  # pyprojkit-managed
 [tool.black]
 quiet = true  # pyprojkit-managed
 target-version = [
-  "py312",
   "py313",
   "py314"
 ]  # pyprojkit-managed
@@ -76,18 +79,19 @@ quiet = true  # pyprojkit-managed
 
 [tool.mypy]
 check_untyped_defs = true  # pyprojkit-managed
-python_version = "3.12"  # pyprojkit-managed
+python_version = "3.13"  # pyprojkit-managed
 
 [tool.nox]
 default_venv_backend = "uv"  # pyprojkit-managed
 envdir = "__cache__/nox"  # pyprojkit-managed
 
 [tool.pyright]
-pythonVersion = "3.12"  # pyprojkit-managed
+pythonVersion = "3.13"  # pyprojkit-managed
 
 [tool.pytest.ini_options]
 addopts = "--import-mode=importlib -s -v -rA"  # pyprojkit-managed
 cache_dir = "__cache__/pytest"  # pyprojkit-managed
+pythonpath = ["test"]
 testpaths = ["test"]  # pyprojkit-managed
 
 [tool.tomlsort]

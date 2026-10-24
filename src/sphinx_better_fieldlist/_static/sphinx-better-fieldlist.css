@@ -1,0 +1,33 @@
+/*
+ * sphinx-better-fieldlist
+ *
+ * Styles for definition lists created in place of field list bullet lists.
+ */
+
+dl.field-list dl.bfl-list {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+dl.field-list dl.bfl-list > dt {
+  font-family: var(--font-stack--monospace, SFMono-Regular, Menlo, Consolas, Monaco,
+      "Liberation Mono", "Lucida Console", monospace);
+  font-weight: normal;
+}
+
+dl.field-list dl.bfl-list > dt .bfl-name {
+  font-weight: bold;
+}
+
+dl.field-list dl.bfl-list > dt .bfl-unknown {
+  font-style: italic;
+  opacity: 0.7;
+}
+
+dl.field-list dl.bfl-list > dd {
+  margin-top: 0;
+}
+
+dl.field-list dl.bfl-list > dd > p:first-child {
+  margin-top: 0;
+}

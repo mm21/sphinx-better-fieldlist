@@ -1,0 +1,280 @@
+# example.Foo
+
+<field_list classes="myst field-list">
+    <field>
+        <field_name>
+            Parameters
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                a
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
+                                int
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                a
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                b
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="str" reftype="class">
+                                str
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                b
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                c
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
+                                int
+                            <desc_sig_space classes="w">
+                                 
+                            <desc_sig_punctuation classes="p">
+                                |
+                            <desc_sig_space classes="w">
+                                 
+                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="None" reftype="obj">
+                                None
+                        <inline classes="bfl-punct">
+                             = 
+                        <inline classes="bfl-default">
+                            <inline classes="default_value" support_smartquotes="0">
+                                <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="0" refspecific="0" reftarget="None" reftype="obj">
+                                    None
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                c
+
+# example.Foo.bar
+
+<field_list classes="myst field-list">
+    <field>
+        <field_name>
+            Parameters
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                d
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="list" reftype="class">
+                                list
+                            <desc_sig_punctuation classes="p">
+                                [
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
+                                int
+                            <desc_sig_punctuation classes="p">
+                                ]
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                d
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                args
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="str" reftype="class">
+                                str
+                    <definition>
+                        <paragraph>
+                            Variadic args
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                e
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="bool" reftype="class">
+                                bool
+                        <inline classes="bfl-punct">
+                             = 
+                        <inline classes="bfl-default">
+                            <inline classes="default_value" support_smartquotes="0">
+                                <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="0" refspecific="0" reftarget="False" reftype="obj">
+                                    False
+                    <definition>
+                        <paragraph>
+                            Keyword-only param 
+                            <literal>
+                                e
+                        <paragraph>
+                            With a second paragraph.
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                f
+                    <definition>
+                        <paragraph>
+                            Passed via 
+                            <literal>
+                                kwargs
+    <field>
+        <field_name>
+            Returns
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="list" reftype="class">
+                                list
+                            <desc_sig_punctuation classes="p">
+                                [
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
+                                int
+                            <desc_sig_punctuation classes="p">
+                                ]
+                    <definition>
+                        <paragraph>
+                            Return value
+    <field>
+        <field_name>
+            Raises
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="ValueError" reftype="exc">
+                                <literal_strong>
+                                    ValueError
+                    <definition>
+                        <paragraph>
+                            If an invalid value is passed
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="TypeError" reftype="exc">
+                                <literal_strong>
+                                    TypeError
+                    <definition>
+                        <paragraph>
+                            If an invalid type is passed
+
+# example.Foo.baz
+
+<field_list classes="myst field-list">
+    <field>
+        <field_name>
+            Parameters
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                g
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type bfl-unknown">
+                            <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="1" refspecific="0" reftarget="typing.Any" reftype="obj">
+                                Unknown
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                g
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                h
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type bfl-unknown">
+                            <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="1" refspecific="0" reftarget="typing.Any" reftype="obj">
+                                Unknown
+                        <inline classes="bfl-punct">
+                             = 
+                        <inline classes="bfl-default">
+                            <inline classes="default_value" support_smartquotes="0">
+                                <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="0" refspecific="0" reftarget="None" reftype="obj">
+                                    None
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                h
+    <field>
+        <field_name>
+            Returns
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="str" reftype="class">
+                                str
+                    <definition>
+                        <paragraph>
+                            Return value
+
+# example.qux
+
+<field_list classes="myst field-list">
+    <field>
+        <field_name>
+            Parameters
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-name">
+                            <literal_strong>
+                                i
+                        <inline classes="bfl-punct">
+                            : 
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
+                                int
+                    <definition>
+                        <paragraph>
+                            Param 
+                            <literal>
+                                i
+    <field>
+        <field_name>
+            Returns
+        <field_body>
+            <definition_list classes="bfl-list">
+                <definition_list_item>
+                    <term>
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="None" reftype="obj">
+                                None
+                    <definition>
+                        <paragraph>
+                            Nothing

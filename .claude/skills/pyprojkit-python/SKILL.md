@@ -10,8 +10,8 @@ description: Workflow and conventions for Python development in this project. Us
 ## Project
 
 - The package `sphinx_better_fieldlist` lives in `src/sphinx_better_fieldlist`.
-- Code must support Python 3.12+ (`requires-python = ">=3.12,<4.0"`): use modern syntax and standard library features available in Python 3.12, and don't add compatibility shims for older versions.
-- Tested Python versions: 3.12, 3.13, 3.14.
+- Code must support Python 3.13+ (`requires-python = ">=3.13,<4.0"`): use modern syntax and standard library features available in Python 3.13, and don't add compatibility shims for older versions.
+- Tested Python versions: 3.13, 3.14.
 - Tool configuration is declared in `pyprojconf.py` and synced into `pyproject.toml` by pyprojkit. Fields marked `# pyprojkit-managed` are overwritten on sync: to change them, edit `pyprojconf.py` and run `uv run doit sync` instead.
 
 ## Conventions
