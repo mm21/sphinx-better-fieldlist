@@ -1,0 +1,100 @@
+# managed (in part) by pyprojkit: https://github.com/mm21/pyprojkit
+
+[project]
+authors = [
+  {name = "mm21", email = "mm21.dev@gmail.com"}
+]
+classifiers = [
+  "Development Status :: 3 - Alpha",
+  "Natural Language :: English",
+  "Operating System :: OS Independent",
+  "Programming Language :: Python :: 3",  # pyprojkit-managed
+  "Programming Language :: Python :: 3.12",  # pyprojkit-managed
+  "Programming Language :: Python :: 3.13",  # pyprojkit-managed
+  "Programming Language :: Python :: 3.14",  # pyprojkit-managed
+  "Programming Language :: Python :: Implementation :: CPython",
+  "Topic :: Software Development :: Libraries :: Python Modules",
+  "Typing :: Typed"  # pyprojkit-managed
+]
+dependencies = []
+description = "Better your fieldlists for API documentation"
+license = "MIT"
+license-files = ["LICENSE"]
+name = "sphinx-better-fieldlist"
+readme = "README.md"
+requires-python = ">=3.12,<4.0"  # pyprojkit-managed
+version = "0.1.0"
+
+[project.urls]
+homepage = "https://github.com/mm21/sphinx-better-fieldlist"
+
+[dependency-groups]
+dev = [
+  "pyprojkit[all]"
+]
+
+[build-system]
+build-backend = "uv_build"
+requires = ["uv_build>=0.11.6,<0.12.0"]
+
+[tool.autoflake]
+in_place = true  # pyprojkit-managed
+recursive = true  # pyprojkit-managed
+remove-all-unused-imports = true  # pyprojkit-managed
+remove-unused-variables = true  # pyprojkit-managed
+
+[tool.black]
+quiet = true  # pyprojkit-managed
+target-version = [
+  "py312",
+  "py313",
+  "py314"
+]  # pyprojkit-managed
+
+[tool.coverage.report]
+exclude_lines = [
+  "if TYPE_CHECKING:",
+  "\\.\\.\\.$"
+]  # pyprojkit-managed
+
+[tool.coverage.run]
+data_file = "__cache__/.coverage"  # pyprojkit-managed
+
+[tool.docfmt]
+force-reflow = true  # pyprojkit-managed
+in-place = true  # pyprojkit-managed
+recursive = true  # pyprojkit-managed
+summary-on-own-line = true  # pyprojkit-managed
+
+[tool.doit]
+dep_file = "__cache__/.doit.db"  # pyprojkit-managed
+verbosity = 2  # pyprojkit-managed
+
+[tool.isort]
+profile = "black"  # pyprojkit-managed
+quiet = true  # pyprojkit-managed
+
+[tool.mypy]
+check_untyped_defs = true  # pyprojkit-managed
+python_version = "3.12"  # pyprojkit-managed
+
+[tool.nox]
+default_venv_backend = "uv"  # pyprojkit-managed
+envdir = "__cache__/nox"  # pyprojkit-managed
+
+[tool.pyright]
+pythonVersion = "3.12"  # pyprojkit-managed
+
+[tool.pytest.ini_options]
+addopts = "--import-mode=importlib -s -v -rA"  # pyprojkit-managed
+cache_dir = "__cache__/pytest"  # pyprojkit-managed
+testpaths = ["test"]  # pyprojkit-managed
+
+[tool.tomlsort]
+sort_first = [
+  "project",
+  "dependency-groups",
+  "build-system"
+]  # pyprojkit-managed
+sort_table_keys = true  # pyprojkit-managed
+spaces_before_inline_comment = 2  # pyprojkit-managed
