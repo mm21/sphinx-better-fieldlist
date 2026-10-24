@@ -18,7 +18,7 @@ classifiers = [
 dependencies = [
   "sphinx>=7.4"
 ]
-description = "Better your fieldlists for API documentation"
+description = "Renders Sphinx field lists as definition lists, with types and defaults from signatures"
 license = "MIT"
 license-files = ["LICENSE"]
 name = "sphinx-better-fieldlist"
