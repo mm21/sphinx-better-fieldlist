@@ -26,7 +26,19 @@ Set on a `pending_xref` created by this extension: if it can't be resolved, its 
 is rendered as-is without a warning.
 """
 
-TEMP_ATTRS = (ATTR_KIND, ATTR_ARG)
+ATTR_DISABLED = "better_fieldlist_disabled"
+"""
+Set on a `desc` within a `better-fieldlist-disable` directive, so it's left as Sphinx
+renders it. Removed once processing is complete.
+"""
+
+TEMP_DATA_DISABLED = "better_fieldlist_disabled"
+"""
+Key in `env.temp_data` set while parsing the content of a `better-fieldlist-disable`
+directive: the nesting depth of such directives.
+"""
+
+TEMP_ATTRS = (ATTR_KIND, ATTR_ARG, ATTR_DISABLED)
 """
 Attributes which are only used while reading a document.
 """
@@ -37,6 +49,7 @@ CLASS_PUNCT = "bfl-punct"
 CLASS_TYPE = "bfl-type"
 CLASS_DEFAULT = "bfl-default"
 CLASS_UNKNOWN = "bfl-unknown"
+CLASS_DISABLED = "bfl-disabled"
 
 
 def make_definition(content: Iterable[nodes.Node]) -> nodes.definition:

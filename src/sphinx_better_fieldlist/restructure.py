@@ -25,6 +25,7 @@ from ._nodes import (
     CLASS_LIST,
     CLASS_NAME,
     CLASS_TYPE,
+    TEMP_DATA_DISABLED,
     make_definition,
     make_inline,
     make_punct,
@@ -74,6 +75,10 @@ def _wrap(cls: type[Field], orig: _MakeField, convert: _MakeField | None) -> _Ma
     ) -> nodes.field:
         if env is None or f"{PREFIX}domains" not in env.config:
             # extension not loaded for this environment
+            return orig(self, types, domain, items, env, inliner, location)
+
+        if env.temp_data.get(TEMP_DATA_DISABLED):
+            # within better-fieldlist-disable directive
             return orig(self, types, domain, items, env, inliner, location)
 
         kind = f"{domain}:{self.name}"

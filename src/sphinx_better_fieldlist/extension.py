@@ -12,6 +12,7 @@ from sphinx.util.typing import ExtensionMetadata
 
 from . import enrich, restructure
 from .config import get_config, register_config
+from .disable import DisableDirective
 
 __all__ = [
     "setup",
@@ -23,6 +24,8 @@ Directory containing static files for HTML output.
 """
 
 _CSS_FILE = "sphinx-better-fieldlist.css"
+
+_DISABLE_DIRECTIVE = "better-fieldlist-disable"
 
 _DOCTREE_READ_PRIORITY = 900
 """
@@ -40,6 +43,8 @@ domain's builtin resolver (900) so xrefs are resolved if possible.
 def setup(app: Sphinx) -> ExtensionMetadata:
     register_config(app)
     restructure.install()
+
+    app.add_directive(_DISABLE_DIRECTIVE, DisableDirective)
 
     app.connect("doctree-read", enrich.process_doctree, priority=_DOCTREE_READ_PRIORITY)
     app.connect(

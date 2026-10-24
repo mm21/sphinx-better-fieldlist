@@ -24,6 +24,7 @@ from sphinx.util import logging
 
 from ._nodes import (
     ATTR_ARG,
+    ATTR_DISABLED,
     ATTR_FALLBACK,
     ATTR_KIND,
     CLASS_DEFAULT,
@@ -54,6 +55,8 @@ def process_doctree(app: Sphinx, doctree: nodes.document):
     config = get_config(app.config)
 
     for desc in doctree.findall(addnodes.desc):
+        if desc.get(ATTR_DISABLED):
+            continue
         if (adapter := get_adapter(desc.get("domain", ""))) is not None:
             _Desc(desc, adapter, config).process()
 
