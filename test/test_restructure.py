@@ -24,9 +24,7 @@ def test_grouped(build: Build):
     """
     Grouped fields are converted to definition lists.
     """
-    fields = get_fields(
-        build(SOURCE, better_fieldlist_signature_types=False).get_desc("f")
-    )
+    fields = get_fields(build(SOURCE).get_desc("f"))
 
     assert get_items(fields["Parameters"]) == [("a", "A"), ("b", "B")]
     assert get_items(fields["Raises"]) == [
@@ -38,7 +36,7 @@ def test_grouped(build: Build):
 
 def test_single(build: Build):
     """
-    A single item is still a definition list rather than collapsed to a paragraph.
+    A single item is still a definition list rather than a paragraph.
     """
     result = build(
         """\
@@ -50,7 +48,7 @@ def test_single(build: Build):
     )
     fields = get_fields(result.get_desc("f"))
 
-    assert get_items(fields["Parameters"]) == [("a: Unknown", "A")]
+    assert get_items(fields["Parameters"]) == [("a", "A")]
     assert get_items(fields["Raises"]) == [("ValueError", "If invalid")]
 
 
@@ -60,9 +58,10 @@ def test_term_structure(build: Build):
     """
     result = build(
         """\
-        .. py:function:: f(a: int = 1)
+        .. py:function:: f(a)
 
            :param a: A
+           :type a: int
         """
     )
     term = next(get_fields(result.get_desc("f"))["Parameters"].findall(nodes.term))
@@ -74,9 +73,8 @@ def test_term_structure(build: Build):
         ["bfl-punct"],
         ["bfl-type"],
         ["bfl-punct"],
-        ["bfl-default"],
     ]
-    assert term.astext() == "a: int = 1"
+    assert term.astext() == "a (int)"
 
 
 def test_block_content(build: Build):
@@ -139,12 +137,13 @@ def test_no_content(build: Build):
     )
     field = get_fields(result.get_desc("f"))["Parameters"]
 
-    assert get_items(field) == [("a: Unknown", "")]
+    assert get_items(field) == [("a", "")]
 
 
 def test_explicit_types(build: Build):
     """
-    Types given by `:type:` or inline in `:param:` are included in the term.
+    Types given by `:type:` or inline in `:param:` are included in the term, as Sphinx
+    renders them.
     """
     result = build(
         """\
@@ -153,12 +152,11 @@ def test_explicit_types(build: Build):
            :param a: A
            :type a: int
            :param str b: B
-        """,
-        better_fieldlist_signature_types=False,
+        """
     )
     field = get_fields(result.get_desc("f"))["Parameters"]
 
-    assert get_items(field) == [("a: int", "A"), ("b: str", "B")]
+    assert get_items(field) == [("a (int)", "A"), ("b (str)", "B")]
 
     # simple types are cross-referenced
     xrefs = list(field.findall(nodes.term))[0].findall(nodes.Element)
@@ -167,14 +165,14 @@ def test_explicit_types(build: Build):
 
 def test_c_domain(build: Build):
     """
-    Domains without an adapter are converted, but not filled in from signatures.
+    Other domains are converted the same way.
     """
     result = build(
         """\
         .. c:function:: int sum(int a, int b)
 
            :param a: First operand
-           :param b: Second operand
+           :param int b: Second operand
            :returns: Sum of operands
         """
     )
@@ -182,7 +180,7 @@ def test_c_domain(build: Build):
 
     assert get_items(fields["Parameters"]) == [
         ("a", "First operand"),
-        ("b", "Second operand"),
+        ("b (int)", "Second operand"),
     ]
 
     # returns is left as-is
@@ -240,17 +238,6 @@ def test_not_loaded(build: Build):
     body = fields["Parameters"].children[1]
     assert isinstance(body.children[0], nodes.bullet_list)
     assert not list(result.get_doctree().findall(nodes.definition_list))
-
-
-def test_temp_attrs_removed(build: Build):
-    """
-    Attributes used while reading aren't persisted.
-    """
-    doctree = build(SOURCE).get_doctree()
-
-    for node in doctree.findall(nodes.Element):
-        assert "better_fieldlist_kind" not in node
-        assert "better_fieldlist_arg" not in node
 
 
 def test_overridden_make_field(build: Build):

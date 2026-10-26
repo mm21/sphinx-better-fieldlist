@@ -1,0 +1,19 @@
+/*
+ * Layout of before/after examples.
+ */
+
+.bfl-example {
+  margin: 1.5rem 0;
+}
+
+.bfl-example > p.rubric {
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+  font-size: var(--font-size--small);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.bfl-example > .bfl-disabled > :last-child {
+  margin-bottom: 0;
+}

@@ -15,6 +15,7 @@ from bfl_testing import (
     get_items,
     requires_latest_sphinx,
 )
+from docutils import nodes
 
 EXAMPLE = '''\
 """
@@ -57,6 +58,7 @@ class Foo:
         Untyped method.
 
         :param g: Param ``g``
+        :type g: int
         :param h: Param ``h``
         :returns: Return value
         :rtype: str
@@ -168,37 +170,46 @@ def test_snapshot_autodoc2(build: Build):
 def _check_example(result: BuildResult, docname: str):
     fields = get_fields(result.get_desc("example.Foo", docname))
     assert get_items(fields["Parameters"]) == [
-        ("a: int", "Param a"),
-        ("b: str", "Param b"),
-        ("c: int | None = None", "Param c"),
+        ("a", "Param a"),
+        ("b", "Param b"),
+        ("c", "Param c"),
     ]
 
     fields = get_fields(result.get_desc("example.Foo.bar", docname))
     assert get_items(fields["Parameters"]) == [
-        ("d: list[int]", "Param d"),
-        ("args: str", "Variadic args"),
-        ("e: bool = False", "Keyword-only param e\n\nWith a second paragraph."),
+        ("d", "Param d"),
+        ("args", "Variadic args"),
+        ("e", "Keyword-only param e\n\nWith a second paragraph."),
         ("f", "Passed via kwargs"),
     ]
-    assert get_items(fields["Returns"]) == [("list[int]", "Return value")]
     assert get_items(fields["Raises"]) == [
         ("ValueError", "If an invalid value is passed"),
         ("TypeError", "If an invalid type is passed"),
     ]
+    assert _get_paragraph(fields["Returns"]) == "Return value"
 
     fields = get_fields(result.get_desc("example.Foo.baz", docname))
     assert get_items(fields["Parameters"]) == [
-        ("g: Unknown", "Param g"),
-        ("h: Unknown = None", "Param h"),
+        ("g (int)", "Param g"),
+        ("h", "Param h"),
     ]
-    assert get_items(fields["Returns"]) == [("str", "Return value")]
-    assert "Return type" not in fields
+    assert _get_paragraph(fields["Returns"]) == "Return value"
+    assert _get_paragraph(fields["Return type"]) == "str"
 
     fields = get_fields(result.get_desc("example.qux", docname))
-    assert get_items(fields["Parameters"]) == [("i: int", "Param i")]
-    assert get_items(fields["Returns"]) == [("None", "Nothing")]
+    assert get_items(fields["Parameters"]) == [("i", "Param i")]
+    assert _get_paragraph(fields["Returns"]) == "Nothing"
 
-    assert not result.warnings
+
+def _get_paragraph(field: nodes.field) -> str:
+    """
+    Get text of a field left as Sphinx renders it: a single paragraph.
+    """
+    body = field.children[1]
+    assert len(body.children) == 1
+    paragraph = body.children[0]
+    assert isinstance(paragraph, nodes.paragraph), body.pformat()
+    return paragraph.astext()
 
 
 def _format_fields(result: BuildResult, docname: str) -> str:

@@ -5,10 +5,9 @@ Directive to disable the extension for its content.
 from __future__ import annotations
 
 from docutils import nodes
-from sphinx import addnodes
 from sphinx.util.docutils import SphinxDirective
 
-from ._nodes import ATTR_DISABLED, CLASS_DISABLED, TEMP_DATA_DISABLED
+from ._nodes import CLASS_DISABLED, TEMP_DATA_DISABLED
 
 __all__ = [
     "DisableDirective",
@@ -43,9 +42,5 @@ class DisableDirective(SphinxDirective):
 
         container = nodes.container("", *children, classes=[CLASS_DISABLED])
         self.set_source_info(container)
-
-        # mark descriptions so they're skipped once the document is read
-        for desc in container.findall(addnodes.desc):
-            desc[ATTR_DISABLED] = True
 
         return [container]

@@ -9,10 +9,10 @@ from docutils import nodes
 from sphinx import addnodes
 
 _FUNCTION = """\
-.. py:function:: {name}(a: int = None) -> int
+.. py:function:: {name}(a, b)
 
    :param a: A
-   :param b: B
+   :param int b: B
    :returns: R
    :rtype: str
 """
@@ -43,16 +43,8 @@ def test_disable(build: Build):
 
     # outside the directive is converted as usual
     fields = get_fields(result.get_desc("after"))
-    assert get_items(fields["Parameters"]) == [("a: int = None", "A"), ("b", "B")]
-    assert get_items(fields["Returns"]) == [("str", "R")]
-
-    # no warning for unmatched param within directive
-    warnings = result.warnings.strip().splitlines()
-    assert len(warnings) == 1
-    assert "signature of after" in warnings[0]
-
-    for node in doctree.findall(nodes.Element):
-        assert "better_fieldlist_disabled" not in node
+    assert get_items(fields["Parameters"]) == [("a", "A"), ("b (int)", "B")]
+    assert not result.warnings
 
 
 def test_nested(build: Build):
@@ -90,9 +82,7 @@ def test_nested(build: Build):
     for name in ("C", "C.m", "C.n", "f"):
         _check_disabled(result.get_desc(name))
 
-    assert get_items(get_fields(result.get_desc("g"))["Parameters"]) == [
-        ("e: int", "E")
-    ]
+    assert get_items(get_fields(result.get_desc("g"))["Parameters"]) == [("e", "E")]
 
 
 def test_autodoc(build: Build):
@@ -115,7 +105,7 @@ def test_autodoc(build: Build):
 
     _check_disabled(before)
     assert list(get_fields(before)) == ["Parameters", "Returns"]
-    assert get_items(get_fields(after)["Parameters"]) == [("a: int = None", "A")]
+    assert get_items(get_fields(after)["Parameters"]) == [("a", "A")]
     assert not result.warnings
 
 
@@ -137,7 +127,7 @@ def test_autodoc2(build: Build):
     before, after = _get_descs(result.get_doctree(), "example.f")
 
     _check_disabled(before)
-    assert get_items(get_fields(after)["Parameters"]) == [("a: int = None", "A")]
+    assert get_items(get_fields(after)["Parameters"]) == [("a", "A")]
     assert not result.warnings
 
 
@@ -173,7 +163,7 @@ def test_myst(build: Build):
     _check_disabled(before)
     assert isinstance(_get_body(get_fields(before)["Parameters"]), nodes.paragraph)
     assert get_items(get_fields(result.get_desc("after", "page"))["Parameters"]) == [
-        ("a: int", "A")
+        ("a", "A")
     ]
     assert not result.warnings
 
@@ -199,13 +189,6 @@ def _check_disabled(desc: addnodes.desc):
     """
     assert not list(desc.findall(nodes.definition_list))
     assert not list(desc.findall(_is_bfl))
-
-    # default xrefs aren't added
-    signature = desc.children[0]
-    assert isinstance(signature, addnodes.desc_signature)
-    assert "None" not in [
-        xref["reftarget"] for xref in signature.findall(addnodes.pending_xref)
-    ]
 
 
 def _is_bfl(node: nodes.Node) -> bool:

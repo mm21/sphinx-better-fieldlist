@@ -48,28 +48,6 @@ class Config:
     `"py:exceptions"`.
     """
 
-    signature_types: bool = field(default=True, metadata={"types": (bool,)})
-    """
-    Whether to copy parameter and return types from the signature. If disabled, the
-    "Returns" field is left as-is regardless of `merge_rtype`.
-    """
-
-    signature_defaults: bool = field(default=True, metadata={"types": (bool,)})
-    """
-    Whether to copy parameter defaults from the signature.
-    """
-
-    merge_rtype: bool = field(default=True, metadata={"types": (bool,)})
-    """
-    Whether to convert the "Returns" field to a definition list whose term is the return
-    type, merging in the "Return type" field if present. Requires `signature_types`.
-    """
-
-    xref_defaults: bool = field(default=True, metadata={"types": (bool,)})
-    """
-    Whether to add cross-references to `None`, `True` and `False` defaults.
-    """
-
     css: bool = field(default=True, metadata={"types": (bool,), "rebuild": "html"})
     """
     Whether to add the bundled stylesheet to HTML output.

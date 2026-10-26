@@ -1,10 +1,10 @@
 """
-Stage 1: create definition lists for grouped doc fields.
+Create definition lists for grouped doc fields.
 
 Wraps `make_field()` of Sphinx's doc field types, which receive each field's argument,
 content and explicitly documented type. Grouped fields (e.g. "Parameters", "Raises") are
-created as definition lists rather than bullet lists, and every field is tagged with its
-kind so it can be found once the document is read.
+created as definition lists rather than bullet lists or, for a single item, paragraphs.
+Each term is rendered as Sphinx renders the start of an item, e.g. `name (type)`.
 """
 
 from __future__ import annotations
@@ -14,14 +14,11 @@ from typing import Any, Callable
 
 from docutils import nodes
 from docutils.nodes import Element, Node
-from docutils.utils import get_source_line
 from sphinx import addnodes
 from sphinx.environment import BuildEnvironment
 from sphinx.util.docfields import Field, GroupedField, TypedField
 
 from ._nodes import (
-    ATTR_ARG,
-    ATTR_KIND,
     CLASS_LIST,
     CLASS_NAME,
     CLASS_TYPE,
@@ -52,7 +49,6 @@ def install():
     loaded for the build environment passed in.
     """
     for cls, wrapper in (
-        (Field, None),
         (GroupedField, _make_grouped_field),
         (TypedField, _make_typed_field),
     ):
@@ -62,7 +58,7 @@ def install():
         setattr(cls, "make_field", _wrap(cls, orig, wrapper))
 
 
-def _wrap(cls: type[Field], orig: _MakeField, convert: _MakeField | None) -> _MakeField:
+def _wrap(cls: type[Field], orig: _MakeField, convert: _MakeField) -> _MakeField:
     @functools.wraps(orig)
     def make_field(
         self: Field,
@@ -81,15 +77,10 @@ def _wrap(cls: type[Field], orig: _MakeField, convert: _MakeField | None) -> _Ma
             # within better-fieldlist-disable directive
             return orig(self, types, domain, items, env, inliner, location)
 
-        kind = f"{domain}:{self.name}"
+        if _is_converted(self, cls, domain, env):
+            return convert(self, types, domain, items, env, inliner, location)
 
-        if convert is not None and _is_converted(self, cls, domain, kind, env):
-            field = convert(self, types, domain, items, env, inliner, location)
-        else:
-            field = orig(self, types, domain, items, env, inliner, location)
-
-        field[ATTR_KIND] = kind
-        return field
+        return orig(self, types, domain, items, env, inliner, location)
 
     setattr(make_field, _MARKER, True)
     return make_field
@@ -99,7 +90,6 @@ def _is_converted(
     field_type: Field,
     cls: type[Field],
     domain: str,
-    kind: str,
     env: BuildEnvironment,
 ) -> bool:
     """
@@ -118,7 +108,7 @@ def _is_converted(
 
     if domains is not None and domain not in domains:
         return False
-    return kind not in exclude_fields
+    return f"{domain}:{field_type.name}" not in exclude_fields
 
 
 def _make_grouped_field(
@@ -142,7 +132,7 @@ def _make_grouped_field(
             inliner=inliner,
             location=location,
         )
-        term = _make_term(fieldarg, name, location)
+        term = _make_term(name)
         deflist += nodes.definition_list_item("", term, make_definition(content))
 
     return _make_field_node(self, deflist)
@@ -164,7 +154,7 @@ def _make_typed_field(
         name = self.make_xrefs(
             self.rolename, domain, fieldarg, addnodes.literal_strong, env=env
         )
-        term = _make_term(fieldarg, name, location)
+        term = _make_term(name)
 
         if fieldarg in types:
             # pop to avoid inserting the same nodes twice, as Sphinx does
@@ -181,8 +171,9 @@ def _make_typed_field(
                     location=location,
                 )
 
-            term += make_punct(": ")
+            term += make_punct(" (")
             term += make_inline(CLASS_TYPE, *fieldtype)
+            term += make_punct(")")
 
         deflist += nodes.definition_list_item("", term, make_definition(content))
 
@@ -193,14 +184,8 @@ def _make_deflist() -> nodes.definition_list:
     return nodes.definition_list(classes=[CLASS_LIST])
 
 
-def _make_term(fieldarg: str, name: list[Node], location: Element | None) -> nodes.term:
-    term = nodes.term("", "", make_inline(CLASS_NAME, *name))
-    term[ATTR_ARG] = fieldarg
-
-    if location is not None:
-        term.source, term.line = get_source_line(location)
-
-    return term
+def _make_term(name: list[Node]) -> nodes.term:
+    return nodes.term("", "", make_inline(CLASS_NAME, *name))
 
 
 def _make_field_node(

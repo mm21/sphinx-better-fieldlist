@@ -10,7 +10,7 @@ from pathlib import Path
 from sphinx.application import Sphinx
 from sphinx.util.typing import ExtensionMetadata
 
-from . import enrich, restructure
+from . import restructure
 from .config import get_config, register_config
 from .disable import DisableDirective
 
@@ -27,36 +27,17 @@ _CSS_FILE = "sphinx-better-fieldlist.css"
 
 _DISABLE_DIRECTIVE = "better-fieldlist-disable"
 
-_DOCTREE_READ_PRIORITY = 900
-"""
-Priority of `doctree-read` handler: run after other extensions' handlers (default 500)
-so modifications to signatures are reflected in copies.
-"""
-
-_MISSING_REFERENCE_PRIORITY = 950
-"""
-Priority of `missing-reference` handler: run after intersphinx (500) and the Python
-domain's builtin resolver (900) so xrefs are resolved if possible.
-"""
-
 
 def setup(app: Sphinx) -> ExtensionMetadata:
     register_config(app)
     restructure.install()
 
     app.add_directive(_DISABLE_DIRECTIVE, DisableDirective)
-
-    app.connect("doctree-read", enrich.process_doctree, priority=_DOCTREE_READ_PRIORITY)
-    app.connect(
-        "missing-reference",
-        enrich.resolve_fallback,
-        priority=_MISSING_REFERENCE_PRIORITY,
-    )
     app.connect("builder-inited", _add_css)
 
     return {
         "version": metadata.version("sphinx-better-fieldlist"),
-        "env_version": 1,
+        "env_version": 2,
         "parallel_read_safe": True,
         "parallel_write_safe": True,
     }

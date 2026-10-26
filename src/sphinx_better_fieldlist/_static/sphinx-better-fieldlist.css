@@ -19,11 +19,6 @@ dl.field-list dl.bfl-list > dt .bfl-name {
   font-weight: bold;
 }
 
-dl.field-list dl.bfl-list > dt .bfl-unknown {
-  font-style: italic;
-  opacity: 0.7;
-}
-
 dl.field-list dl.bfl-list > dd {
   margin-top: 0;
 }

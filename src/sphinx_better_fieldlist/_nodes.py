@@ -1,5 +1,5 @@
 """
-Node attributes and helpers shared between stages.
+Node classes and helpers for creating definition lists.
 """
 
 from __future__ import annotations
@@ -8,47 +8,16 @@ from typing import Iterable
 
 from docutils import nodes
 
-ATTR_KIND = "better_fieldlist_kind"
-"""
-Set on a `field` created by a doc field type: `<domain>:<field type>`, e.g.
-`"py:parameter"`. Removed once processing is complete.
-"""
-
-ATTR_ARG = "better_fieldlist_arg"
-"""
-Set on a `term` created for a field argument: the argument as documented, e.g. `"a"`.
-Removed once processing is complete.
-"""
-
-ATTR_FALLBACK = "better_fieldlist_fallback"
-"""
-Set on a `pending_xref` created by this extension: if it can't be resolved, its content
-is rendered as-is without a warning.
-"""
-
-ATTR_DISABLED = "better_fieldlist_disabled"
-"""
-Set on a `desc` within a `better-fieldlist-disable` directive, so it's left as Sphinx
-renders it. Removed once processing is complete.
-"""
-
 TEMP_DATA_DISABLED = "better_fieldlist_disabled"
 """
 Key in `env.temp_data` set while parsing the content of a `better-fieldlist-disable`
 directive: the nesting depth of such directives.
 """
 
-TEMP_ATTRS = (ATTR_KIND, ATTR_ARG, ATTR_DISABLED)
-"""
-Attributes which are only used while reading a document.
-"""
-
 CLASS_LIST = "bfl-list"
 CLASS_NAME = "bfl-name"
 CLASS_PUNCT = "bfl-punct"
 CLASS_TYPE = "bfl-type"
-CLASS_DEFAULT = "bfl-default"
-CLASS_UNKNOWN = "bfl-unknown"
 CLASS_DISABLED = "bfl-disabled"
 
 
@@ -85,7 +54,7 @@ def make_inline(cls: str, *children: nodes.Node) -> nodes.inline:
 
 def make_punct(text: str) -> nodes.inline:
     """
-    Create punctuation separating parts of a term, e.g. `": "`.
+    Create punctuation separating parts of a term, e.g. `" ("`.
     """
     return make_inline(CLASS_PUNCT, nodes.Text(text))
 

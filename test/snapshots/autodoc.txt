@@ -11,11 +11,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 a
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
-                                int
                     <definition>
                         <paragraph>
                             Param 
@@ -26,11 +21,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 b
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="str" reftype="class">
-                                str
                     <definition>
                         <paragraph>
                             Param 
@@ -41,25 +31,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 c
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
-                                int
-                            <desc_sig_space classes="w">
-                                 
-                            <desc_sig_punctuation classes="p">
-                                |
-                            <desc_sig_space classes="w">
-                                 
-                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="None" reftype="obj">
-                                None
-                        <inline classes="bfl-punct">
-                             = 
-                        <inline classes="bfl-default">
-                            <inline classes="default_value" support_smartquotes="0">
-                                <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="0" refspecific="0" reftarget="None" reftype="obj">
-                                    None
                     <definition>
                         <paragraph>
                             Param 
@@ -79,17 +50,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 d
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="list" reftype="class">
-                                list
-                            <desc_sig_punctuation classes="p">
-                                [
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
-                                int
-                            <desc_sig_punctuation classes="p">
-                                ]
                     <definition>
                         <paragraph>
                             Param 
@@ -100,11 +60,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 args
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="str" reftype="class">
-                                str
                     <definition>
                         <paragraph>
                             Variadic args
@@ -113,17 +68,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 e
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="bool" reftype="class">
-                                bool
-                        <inline classes="bfl-punct">
-                             = 
-                        <inline classes="bfl-default">
-                            <inline classes="default_value" support_smartquotes="0">
-                                <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="0" refspecific="0" reftarget="False" reftype="obj">
-                                    False
                     <definition>
                         <paragraph>
                             Keyword-only param 
@@ -145,21 +89,8 @@
         <field_name>
             Returns
         <field_body>
-            <definition_list classes="bfl-list">
-                <definition_list_item>
-                    <term>
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="list" reftype="class">
-                                list
-                            <desc_sig_punctuation classes="p">
-                                [
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
-                                int
-                            <desc_sig_punctuation classes="p">
-                                ]
-                    <definition>
-                        <paragraph>
-                            Return value
+            <paragraph>
+                Return value
     <field>
         <field_name>
             Raises
@@ -198,10 +129,13 @@
                             <literal_strong>
                                 g
                         <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type bfl-unknown">
-                            <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="1" refspecific="0" reftarget="typing.Any" reftype="obj">
-                                Unknown
+                             (
+                        <inline classes="bfl-type">
+                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="int" reftype="class">
+                                <literal_emphasis>
+                                    int
+                        <inline classes="bfl-punct">
+                            )
                     <definition>
                         <paragraph>
                             Param 
@@ -212,17 +146,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 h
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type bfl-unknown">
-                            <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="1" refspecific="0" reftarget="typing.Any" reftype="obj">
-                                Unknown
-                        <inline classes="bfl-punct">
-                             = 
-                        <inline classes="bfl-default">
-                            <inline classes="default_value" support_smartquotes="0">
-                                <pending_xref better_fieldlist_fallback="1" refdomain="py" refexplicit="0" refspecific="0" reftarget="None" reftype="obj">
-                                    None
                     <definition>
                         <paragraph>
                             Param 
@@ -232,15 +155,15 @@
         <field_name>
             Returns
         <field_body>
-            <definition_list classes="bfl-list">
-                <definition_list_item>
-                    <term>
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="str" reftype="class">
-                                str
-                    <definition>
-                        <paragraph>
-                            Return value
+            <paragraph>
+                Return value
+    <field>
+        <field_name>
+            Return type
+        <field_body>
+            <paragraph>
+                <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="str" reftype="class">
+                    str
 
 # example.qux
 
@@ -255,11 +178,6 @@
                         <inline classes="bfl-name">
                             <literal_strong>
                                 i
-                        <inline classes="bfl-punct">
-                            : 
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="int" reftype="class">
-                                int
                     <definition>
                         <paragraph>
                             Param 
@@ -269,12 +187,5 @@
         <field_name>
             Returns
         <field_body>
-            <definition_list classes="bfl-list">
-                <definition_list_item>
-                    <term>
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="True" py:module="example" refdomain="py" refspecific="0" reftarget="None" reftype="obj">
-                                None
-                    <definition>
-                        <paragraph>
-                            Nothing
+            <paragraph>
+                Nothing
