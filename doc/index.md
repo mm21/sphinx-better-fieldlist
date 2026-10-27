@@ -36,7 +36,7 @@ Then add it to `extensions` in `conf.py`:
 
 ```python
 extensions = [
-    "sphinx.ext.autodoc",
+    # ...
     "sphinx_better_fieldlist",
 ]
 ```
