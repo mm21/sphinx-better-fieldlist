@@ -1,6 +1,6 @@
 # sphinx-better-fieldlist
 
-Renders Sphinx field lists as definition lists, with types and defaults from signatures
+Renders Sphinx field lists as definition lists
 
 [![Python versions](https://img.shields.io/pypi/pyversions/pyprojkit.svg)](https://pypi.org/project/pyprojkit)
 [![PyPI](https://img.shields.io/pypi/v/pyprojkit?color=%2334D058&label=pypi%20package)](https://pypi.org/project/pyprojkit)
