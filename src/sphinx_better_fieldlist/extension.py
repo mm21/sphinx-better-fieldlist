@@ -11,7 +11,7 @@ from sphinx.application import Sphinx
 from sphinx.util.typing import ExtensionMetadata
 
 from . import restructure
-from .config import get_config, register_config
+from .config import register_config
 from .disable import DisableDirective
 
 __all__ = [
@@ -37,14 +37,14 @@ def setup(app: Sphinx) -> ExtensionMetadata:
 
     return {
         "version": metadata.version("sphinx-better-fieldlist"),
-        "env_version": 2,
+        "env_version": 3,
         "parallel_read_safe": True,
         "parallel_write_safe": True,
     }
 
 
 def _add_css(app: Sphinx):
-    if app.builder.format != "html" or not get_config(app.config).css:
+    if app.builder.format != "html":
         return
 
     app.config.html_static_path.append(str(_STATIC_PATH))

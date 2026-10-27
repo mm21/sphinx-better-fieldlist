@@ -21,6 +21,7 @@ from sphinx.util.docfields import Field, GroupedField, TypedField
 from ._nodes import (
     CLASS_LIST,
     CLASS_NAME,
+    CLASS_SIG,
     CLASS_TYPE,
     TEMP_DATA_DISABLED,
     make_definition,
@@ -104,11 +105,7 @@ def _is_converted(
             return False
 
     domains = env.config[f"{PREFIX}domains"]
-    exclude_fields = env.config[f"{PREFIX}exclude_fields"]
-
-    if domains is not None and domain not in domains:
-        return False
-    return f"{domain}:{field_type.name}" not in exclude_fields
+    return domains is None or domain in domains
 
 
 def _make_grouped_field(
@@ -132,7 +129,7 @@ def _make_grouped_field(
             inliner=inliner,
             location=location,
         )
-        term = _make_term(name)
+        term = _make_term(make_inline(CLASS_NAME, *name))
         deflist += nodes.definition_list_item("", term, make_definition(content))
 
     return _make_field_node(self, deflist)
@@ -154,7 +151,7 @@ def _make_typed_field(
         name = self.make_xrefs(
             self.rolename, domain, fieldarg, addnodes.literal_strong, env=env
         )
-        term = _make_term(name)
+        parts: list[Node] = [make_inline(CLASS_NAME, *name)]
 
         if fieldarg in types:
             # pop to avoid inserting the same nodes twice, as Sphinx does
@@ -171,10 +168,11 @@ def _make_typed_field(
                     location=location,
                 )
 
-            term += make_punct(" (")
-            term += make_inline(CLASS_TYPE, *fieldtype)
-            term += make_punct(")")
+            parts.append(make_punct(" ("))
+            parts.append(make_inline(CLASS_TYPE, *fieldtype))
+            parts.append(make_punct(")"))
 
+        term = _make_term(*parts)
         deflist += nodes.definition_list_item("", term, make_definition(content))
 
     return _make_field_node(self, deflist)
@@ -184,8 +182,12 @@ def _make_deflist() -> nodes.definition_list:
     return nodes.definition_list(classes=[CLASS_LIST])
 
 
-def _make_term(name: list[Node]) -> nodes.term:
-    return nodes.term("", "", make_inline(CLASS_NAME, *name))
+def _make_term(*parts: Node) -> nodes.term:
+    """
+    Create a term whose content is styled as Sphinx styles inline signatures, e.g. in
+    monospace.
+    """
+    return nodes.term("", "", nodes.inline("", "", *parts, classes=CLASS_SIG))
 
 
 def _make_field_node(

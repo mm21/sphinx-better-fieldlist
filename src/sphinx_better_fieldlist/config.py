@@ -7,16 +7,13 @@ from __future__ import annotations
 import dataclasses
 from dataclasses import dataclass, field
 from types import NoneType
-from typing import Any
 
 from sphinx.application import Sphinx
-from sphinx.config import Config as SphinxConfig
 
 __all__ = [
     "PREFIX",
     "Config",
     "register_config",
-    "get_config",
 ]
 
 PREFIX = "better_fieldlist_"
@@ -40,19 +37,6 @@ class Config:
     for all domains.
     """
 
-    exclude_fields: list[str] = field(
-        default_factory=list, metadata={"types": (list, tuple)}
-    )
-    """
-    Field types to leave as Sphinx renders them, given as `<domain>:<field type>`, e.g.
-    `"py:exceptions"`.
-    """
-
-    css: bool = field(default=True, metadata={"types": (bool,), "rebuild": "html"})
-    """
-    Whether to add the bundled stylesheet to HTML output.
-    """
-
 
 def register_config(app: Sphinx):
     """
@@ -70,14 +54,3 @@ def register_config(app: Sphinx):
             config_field.metadata.get("rebuild", "env"),
             types=frozenset(config_field.metadata["types"]),
         )
-
-
-def get_config(sphinx_config: SphinxConfig) -> Config:
-    """
-    Get config values from Sphinx's config.
-    """
-    kwargs: dict[str, Any] = {
-        config_field.name: sphinx_config[f"{PREFIX}{config_field.name}"]
-        for config_field in dataclasses.fields(Config)
-    }
-    return Config(**kwargs)

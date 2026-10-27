@@ -20,6 +20,11 @@ CLASS_PUNCT = "bfl-punct"
 CLASS_TYPE = "bfl-type"
 CLASS_DISABLED = "bfl-disabled"
 
+CLASS_SIG = ["sig", "sig-inline"]
+"""
+Classes of Sphinx's `desc_inline` node, which themes style as inline signatures.
+"""
+
 
 def make_definition(content: Iterable[nodes.Node]) -> nodes.definition:
     """

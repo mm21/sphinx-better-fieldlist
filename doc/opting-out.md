@@ -71,8 +71,7 @@ doesn't warn about a duplicate object description:
   declared in a separate namespace with `c:namespace-push` and `c:namespace-pop` (or
   their `cpp:` equivalents), which doesn't change the name shown.
 
-## Whole domains or field types
+## Whole domains
 
 To leave a domain's field lists as Sphinx renders them, exclude it from
-{confval}`better_fieldlist_domains`. To leave specific field types, such as Raises, add
-them to {confval}`better_fieldlist_exclude_fields`.
+{confval}`better_fieldlist_domains`.

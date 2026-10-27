@@ -127,23 +127,7 @@ def test_html(build: Build):
     html = (outdir / "index.html").read_text()
     assert "_static/sphinx-better-fieldlist.css" in html
     assert re.search(r'<dl class="[^"]*\bbfl-list\b', html)
-    assert '<span class="bfl-name">' in html
-
-
-def test_html_no_css(build: Build):
-    result = build(
-        """\
-        .. py:function:: f(a: int)
-
-           :param a: A
-        """,
-        buildername="html",
-        better_fieldlist_css=False,
-    )
-    outdir = result.app.outdir
-
-    assert not (outdir / "_static" / "sphinx-better-fieldlist.css").exists()
-    assert "sphinx-better-fieldlist.css" not in (outdir / "index.html").read_text()
+    assert '<dt><span class="sig sig-inline"><span class="bfl-name">' in html
 
 
 @requires_latest_sphinx

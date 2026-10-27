@@ -8,9 +8,10 @@
             <definition_list classes="bfl-list">
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                a
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    a
                     <definition>
                         <paragraph>
                             Param 
@@ -18,9 +19,10 @@
                                 a
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                b
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    b
                     <definition>
                         <paragraph>
                             Param 
@@ -28,9 +30,10 @@
                                 b
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                c
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    c
                     <definition>
                         <paragraph>
                             Param 
@@ -47,9 +50,10 @@
             <definition_list classes="bfl-list">
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                d
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    d
                     <definition>
                         <paragraph>
                             Param 
@@ -57,17 +61,19 @@
                                 d
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                args
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    args
                     <definition>
                         <paragraph>
                             Variadic args
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                e
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    e
                     <definition>
                         <paragraph>
                             Keyword-only param 
@@ -77,9 +83,10 @@
                             With a second paragraph.
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                f
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    f
                     <definition>
                         <paragraph>
                             Passed via 
@@ -98,19 +105,21 @@
             <definition_list classes="bfl-list">
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="ValueError" reftype="exc">
-                                <literal_strong>
-                                    ValueError
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="ValueError" reftype="exc">
+                                    <literal_strong>
+                                        ValueError
                     <definition>
                         <paragraph>
                             If an invalid value is passed
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="TypeError" reftype="exc">
-                                <literal_strong>
-                                    TypeError
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="TypeError" reftype="exc">
+                                    <literal_strong>
+                                        TypeError
                     <definition>
                         <paragraph>
                             If an invalid type is passed
@@ -125,17 +134,18 @@
             <definition_list classes="bfl-list">
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                g
-                        <inline classes="bfl-punct">
-                             (
-                        <inline classes="bfl-type">
-                            <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="int" reftype="class">
-                                <literal_emphasis>
-                                    int
-                        <inline classes="bfl-punct">
-                            )
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    g
+                            <inline classes="bfl-punct">
+                                 (
+                            <inline classes="bfl-type">
+                                <pending_xref py:class="Foo" py:module="example" refdomain="py" refexplicit="0" refspecific="1" reftarget="int" reftype="class">
+                                    <literal_emphasis>
+                                        int
+                            <inline classes="bfl-punct">
+                                )
                     <definition>
                         <paragraph>
                             Param 
@@ -143,9 +153,10 @@
                                 g
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                h
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    h
                     <definition>
                         <paragraph>
                             Param 
@@ -175,9 +186,10 @@
             <definition_list classes="bfl-list">
                 <definition_list_item>
                     <term>
-                        <inline classes="bfl-name">
-                            <literal_strong>
-                                i
+                        <inline classes="sig sig-inline">
+                            <inline classes="bfl-name">
+                                <literal_strong>
+                                    i
                     <definition>
                         <paragraph>
                             Param 

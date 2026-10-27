@@ -54,7 +54,8 @@ def test_single(build: Build):
 
 def test_term_structure(build: Build):
     """
-    Term parts are wrapped in inlines with classes for styling.
+    Term parts are wrapped in inlines with classes for styling, within an inline styled
+    as a signature.
     """
     result = build(
         """\
@@ -66,8 +67,13 @@ def test_term_structure(build: Build):
     )
     term = next(get_fields(result.get_desc("f"))["Parameters"].findall(nodes.term))
 
+    assert len(term.children) == 1
+    sig = term.children[0]
+    assert isinstance(sig, nodes.inline)
+    assert sig["classes"] == ["sig", "sig-inline"]
+
     assert [
-        child["classes"] for child in term.children if isinstance(child, nodes.Element)
+        child["classes"] for child in sig.children if isinstance(child, nodes.Element)
     ] == [
         ["bfl-name"],
         ["bfl-punct"],
@@ -210,19 +216,6 @@ def test_domains(build: Build):
     assert isinstance(py_body.children[0], nodes.paragraph)
 
     assert get_items(get_fields(result.get_desc("g"))["Parameters"]) == [("b", "B")]
-
-
-def test_exclude_fields(build: Build):
-    """
-    Excluded fields are left as Sphinx renders them.
-    """
-    result = build(SOURCE, better_fieldlist_exclude_fields=["py:exceptions"])
-    fields = get_fields(result.get_desc("f"))
-
-    raises_body = fields["Raises"].children[1]
-    assert isinstance(raises_body.children[0], nodes.bullet_list)
-
-    get_items(fields["Parameters"])
 
 
 def test_not_loaded(build: Build):
